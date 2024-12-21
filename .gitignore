@@ -1,0 +1,24 @@
+# Exclude virtual environment
+myenv/
+
+# Exclude Python bytecode files
+*.pyc
+__pycache__/
+
+# Exclude all .png images
+*.png
+
+# Exclude system-specific files
+.DS_Store
+Thumbs.db
+
+# Exclude logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# Exclude Streamlit cache directory (if applicable)
+.streamlit/
+
+# Exclude VSCode settings (if using VSCode)
+.vscode/
