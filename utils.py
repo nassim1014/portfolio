@@ -12,7 +12,7 @@ def display_logos_base64(logos):
     for logo in logos:
         try:
             encoded = get_image_base64(logo)
-            logos_html += f'<img src="data:image/png;base64,{encoded}" width="80" style="object-fit: contain;">'
+            logos_html += f'<img src="data:image/png;base64,{encoded}" width="60" style="object-fit: contain;">'
         except Exception as e:
             st.error(f"Error loading logo {logo}: {str(e)}")
     logos_html += '</div>'

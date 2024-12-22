@@ -64,9 +64,20 @@ class Simple_certificate(Certificate):
         st.markdown(f'<a href="data:application/pdf;base64,{base64.b64encode(pdf_bytes).decode()}" target="_blank">Open Certificate in New Tab</a>', unsafe_allow_html=True)
 
 
+def display_certificates(certificates):
+    # Create rows of 3 certificates each
+    for i in range(0, len(certificates), 3):
+        # Create three columns
+        cols = st.columns(3)
+        
+        # Fill each column with a certificate
+        for j in range(3):
+            if i + j < len(certificates):  # Check if there's a certificate to display
+                with cols[j]:
+                    certificates[i + j].return_certificate()
 
-def display_certificates():
-
+def MyCertificates():
+    
     DeepLearning = Simple_certificate( 
         title="Deep Learning",
         issued_by="IBM",
@@ -142,39 +153,8 @@ def display_certificates():
         DeepLearning, DeepLearning_gpu_certificate, Docker_certificate,
         DeepLearning_ess_certificate, DeepLearning_tensorflow_certificate, BigData_certificate,
         DS_lvl1_certificate, python_DS__certificate, Data_Analysis_certificate,
-        R_certificate  # Last row might not be full
+        R_certificate 
     ]
 
-    # Create rows of 3 certificates each
-    for i in range(0, len(certificates), 3):
-        # Create three columns
-        cols = st.columns(3)
-        
-        # Fill each column with a certificate
-        for j in range(3):
-            if i + j < len(certificates):  # Check if there's a certificate to display
-                with cols[j]:
-                    certificates[i + j].return_certificate()
-def old_display_certificates():
-    st.title("📜 Certificates & Courses")
-    
-    certificates = [
-        {
-            "name": "Machine Learning Specialization",
-            "platform": "Coursera",
-            "date": "2023"
-        },
-        {
-            "name": "Deep Learning Specialization",
-            "platform": "Coursera",
-            "date": "2023"
-        }
-    ]
-    
-    for cert in certificates:
-        st.markdown(f"""
-        ### {cert['name']}
-        **Platform**: {cert['platform']}  
-        **Completed**: {cert['date']}
-        """)
-        st.image("/api/placeholder/400/200", caption=f"{cert['name']} Certificate")
+    return display_certificates(certificates)
+

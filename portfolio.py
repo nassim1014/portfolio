@@ -45,8 +45,8 @@ elif page == "Projects":
     display_projects()
 # Certificates Section
 elif page == "Certificates":
-    from src.certificates import display_certificates
-    display_certificates()
+    from src.certificates import MyCertificates
+    MyCertificates()
 # Contact Section
 elif page == "Contact":
     from src.contact import display_contact
