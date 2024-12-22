@@ -1,30 +1,26 @@
+from src.factories.project_factory import ProjectFactory
 import streamlit as st
-def display_projects():
-    st.title("🚀 Projects")
-    
-    # Medical Self-Diagnosis Web App
-    with st.container():
-        st.markdown("""
-        ### Medical Self-Diagnosis Web Application
-        """)
-        col1, col2 = st.columns([2,1])
-        with col1:
-            st.markdown("""
+
+project_1 = ProjectFactory.create_project("old",
+        title="Medical Self-Diagnosis Web Application",
+        description="""
             - Developed a web application with 95% prediction accuracy
             - **Technologies**: React JS, Flask, SQLite, Python
             - **Features**:
                 * Interactive user interface
                 * Machine learning-based diagnosis
                 * Secure data storage
-            """)
-        with col2:
-            st.image("/api/placeholder/300/200", caption="Medical App Interface")
+            """,
+        image_path="data/projects_pics/cov_tracker.png"
+        )
+current_projects = ProjectFactory.create_project( "current",
+        title="Portfolio",
+        description="I'm currently working on:\n1. Enhanced Portfolio Website (Streamlit)\n2. Advanced Data Analysis Projects\n3. Contributing to Open Source"
+        )
     
-    # Current Projects
+def display_projects():
+    st.title("🚀 Projects")
+    project_1.return_project()
     st.header("🔨 Current Projects")
-    st.info("""
-    I'm currently working on:
-    1. Enhanced Portfolio Website (Streamlit)
-    2. Advanced Data Analysis Projects
-    3. Contributing to Open Source
-    """)
+    current_projects.return_project()
+
