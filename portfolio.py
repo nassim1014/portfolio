@@ -3,7 +3,7 @@ import requests
 from PIL import Image
 import pandas as pd
 
-
+import importlib
 import streamlit as st
 import requests
 from PIL import Image
@@ -26,44 +26,14 @@ load_css("style.css")
 with st.sidebar:
     st.image("image/lin.png", caption="Nassim ZAARI")
     st.title("Navigation")
-    page = st.radio("Go to", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
+    #page = st.radio("Go to", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
+    page = st.sidebar.selectbox("Navigation", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
 
 #page = st.session_state.current_page
 # About Me Section
 if page == "About Me":
-    st.title("👋 Hello, I'm Nassim ZAARI")
-    st.header("Software Engineer | Data Scientist")
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        ### Professional Summary
-        Young graduate with solid training in Data Science and Software Development. 
-        Passionate about creating innovative solutions and leveraging data for business impact.
-        
-        ### Education
-        - **Master's Degree** in Machine Learning and Complex Systems Optimization
-          * University of Technology of Compiègne (GPA: 4.77/5)
-          * 2022 - 2024
-        
-        - **Engineering Degree** in Computer Science
-          * Mohammadia School of Engineers
-          * 2020 - 2023
-        """)
-    
-    with col2:
-        st.markdown("""
-        ### Languages
-        - French (Bilingual)
-        - English (Bilingual)
-        - Arabic (Native)
-        
-        ### Professional Values
-        - Team Collaboration
-        - Adaptability
-        - Autonomy
-        - Rigor
-        """)
+    from src.about_me import display_about_me
+    display_about_me()
 
 # Experience Section
 elif page == "Experience":
