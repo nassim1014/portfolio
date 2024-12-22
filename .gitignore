@@ -1,6 +1,6 @@
 # Exclude virtual environment
 myenv/
-
+data/
 # Exclude Python bytecode files
 *.pyc
 __pycache__/
