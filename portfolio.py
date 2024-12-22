@@ -19,7 +19,7 @@ st.set_page_config(
 load_css("style.css")
 # Sidebar
 with st.sidebar:
-    st.image("image/lin.png", caption="Nassim ZAARI")
+    st.image("data/image/utc_grad.jpg", caption="Nassim ZAARI")
     st.title("Navigation")
     #page = st.radio("Go to", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
     page = st.sidebar.selectbox("Navigation", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
