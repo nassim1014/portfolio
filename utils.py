@@ -3,6 +3,7 @@ import base64
 import streamlit as st
 from streamlit_pdf_viewer import pdf_viewer
 
+
 def get_image_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()

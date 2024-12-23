@@ -1,6 +1,6 @@
 import streamlit as st
 from abc import ABC, abstractmethod
-from utils import display_logos_base64, display_pdf, display_pdf_interactive
+from utils import display_logos_base64, display_pdf, display_pdf_interactive, get_image_base64
 import base64
 class Certificate(ABC):
     @abstractmethod
@@ -39,29 +39,31 @@ class Simple_certificate(Certificate):
         self.date = date
         self.pdf_path = pdf_path  # Path to the PDF certificate
         self.logos = logos  # List of logos paths or URLs
-    
+
     def return_certificate(self):
-        # Display certificate details
-        st.write(f"### {self.title}")
-        st.write(f"Issued by: {self.issued_by}")
-        st.write(f"Date: {self.date}")
+        # Create a container with a light background
+        with st.container(height= 200):
+
+            # Title and details
+            st.markdown(f"#### {self.title}")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown(f"**Issued by:** {self.issued_by}")
+            with col2:
+                st.markdown(f"**Date:** {self.date}")
         
-        # Display logos at the bottom
-        display_logos_base64(self.logos)
-        
-        # "View Certificate" button to open PDF in a new page
-        #if st.button("View Certificate"):
-            # Create a link to open the PDF in a new tab
+
         pdf_file = open(self.pdf_path, "rb")
         pdf_bytes = pdf_file.read()
         pdf_file.close()
-       #     st.download_button(
-       #         label="Download Certificate",
-       #         data=pdf_bytes,
-       #         file_name=self.pdf_path.split("/")[-1],
-       #         mime="application/pdf",
-       #     )
-        st.markdown(f'<a href="data:application/pdf;base64,{base64.b64encode(pdf_bytes).decode()}" target="_blank">Open Certificate in New Tab</a>', unsafe_allow_html=True)
+            
+        st.markdown(
+                f'<a href="data:application/pdf;base64,{base64.b64encode(pdf_bytes).decode()}" target="_blank"><button style="width: 100%; padding: 10px; background-color: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer;">📄 View Certificate</button></a>',
+                unsafe_allow_html=True
+            )
+            
+         #   st.markdown("---")  # Separator line at bottom
 
 class CertificateFactory:
     @staticmethod

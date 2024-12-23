@@ -72,10 +72,27 @@ certificates = [
         issued_by="IBM",
         date="2021",
         pdf_path="data/certifs/IBM/Data_Visualization_with_R_Badge20210622-58-1b8g715.pdf",
-        logos=["data/certifs/logos/ibm_logo.png" ])
+        logos=["data/certifs/logos/ibm_logo.png" ]),
+
+    CertificateFactory.create_certificate(
+        title="Débutez avec React",
+        issued_by="OpenClassrooms",
+        date = "2021",
+        pdf_path="data/certifs/OPEN CLASSROOMS/4815824035.pdf",
+        logos=["data/certifs/logos/oc.png" ]),
+    
+    CertificateFactory.create_certificate(
+        title="Initiez-vous au langage R pour analyser vos données",
+        issued_by="OpenClassrooms",
+        date = "2021",
+        pdf_path="data/certifs/OPEN CLASSROOMS/9014331609.pdf",
+        logos=["data/certifs/logos/oc.png" , "data/certifs/logos/ensae-ensai_logo.png"]),
+    
     ]
+
 def display_certificates():
     st.title("📜 Certificates & Courses")
+    
     # Create rows of 3 certificates each
     for i in range(0, len(certificates), 3):
         # Create three columns
@@ -86,13 +103,3 @@ def display_certificates():
             if i + j < len(certificates):  # Check if there's a certificate to display
                 with cols[j]:
                     certificates[i + j].return_certificate()
-    # Group certificates in rows of 3
-#    certificates = [
-#        DeepLearning, DeepLearning_gpu_certificate, Docker_certificate,
-#        DeepLearning_ess_certificate, DeepLearning_tensorflow_certificate, BigData_certificate,
-#        DS_lvl1_certificate, python_DS__certificate, Data_Analysis_certificate,
-#        R_certificate 
-#    ]
-
-#    return display_certificates(certificates)
-
