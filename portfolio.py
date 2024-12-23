@@ -1,11 +1,9 @@
-import importlib
 import streamlit as st
-import requests
-from PIL import Image
-import pandas as pd
 
+from src.controllers.projects_controller import ProjectController
 from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
+
 def load_css(file_name):
     with open(file_name, "r") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -47,8 +45,12 @@ elif page == "Skills":
     display_skills()
 # Projects Section
 elif page == "Projects":
-    from src.projects import display_projects
-    display_projects()
+    projects_controller = ProjectController()
+    # Load projectss from JSON
+    projects_controller.load_projects_from_file("data/projects.json")
+    # Display projects
+    projects_controller.display_projects()
+
 # Certificates Section
 elif page == "Certificates":
     certificates_controller = CertificateController()
