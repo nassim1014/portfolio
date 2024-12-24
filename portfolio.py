@@ -4,14 +4,13 @@ from src.controllers.projects_controller import ProjectController
 from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
 from src.controllers.skill_controller import SkillController
-from utils import load_json_from_drive
+from utils import load_json_from_drive , get_direct_download_link
 
 from dotenv import load_dotenv
 import os
 import requests
 from PIL import Image
 from io import BytesIO
-from utils import get_direct_download_link
 
 load_dotenv()  # This loads the .env file
 
