@@ -8,6 +8,9 @@ from utils import load_json_from_drive
 
 from dotenv import load_dotenv
 import os
+import requests
+from PIL import Image
+from io import BytesIO
 
 load_dotenv()  # This loads the .env file
 
@@ -16,6 +19,7 @@ experiences_file_url = os.getenv("EXPERIENCES_URL")
 certificates_file_url = os.getenv("CERTIFICATES_URL")
 skills_file_url = os.getenv("SKILLS_URL")
 projects_file_url = os.getenv("PROJECTS_URL")
+image_url = os.getenv("IMAGE_URL")
 
 def load_css(file_name):
     with open(file_name, "r") as f:
@@ -30,10 +34,24 @@ st.set_page_config(
 
 load_css("style.css")
 # Sidebar
+
 with st.sidebar:
-    st.image("data/image/utc_grad.jpg", caption="Nassim ZAARI")
+    # Load the image URL from environment variables
+    image_url = os.getenv("PROFILE_IMAGE_URL")  # Add this to your environment variables (e.g., .env file, GitHub secrets)
+
+    if image_url:
+        # Fetch the image from Google Drive using the URL
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            image = Image.open(BytesIO(response.content))
+            st.image(image, caption="Nassim ZAARI")
+        else:
+            st.warning("Unable to load image from the provided URL.")
+    else:
+        st.warning("Image URL not found in environment variables.")
+
     st.title("Navigation")
-    #page = st.radio("Go to", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
+    # Sidebar navigation
     page = st.sidebar.selectbox("Navigation", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
 
 #page = st.session_state.current_page
