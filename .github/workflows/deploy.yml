@@ -1,12 +1,12 @@
-name: Deploy Streamlit App
+name: Test Streamlit App
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on pushes to the main branch
+      - main  # Trigger on pushes to the main branch
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
@@ -20,8 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m venv .venv
+          source .venv/bin/activate
           pip install -r requirements.txt
-          pip install python-dotenv  # Install dotenv to load environment variables
+          pip install python-dotenv
 
       - name: Set environment variables
         run: |
@@ -31,6 +33,7 @@ jobs:
           echo "CERTIFICATES_URL=${{ secrets.CERTIFICATES_URL }}" >> $GITHUB_ENV
           echo "IMAGE_URL=${{ secrets.IMAGE_URL }}" >> $GITHUB_ENV
 
-      - name: Run Streamlit app
+      - name: Run Streamlit app (Debug)
         run: |
-          streamlit run portfolio.py
+          source .venv/bin/activate
+          streamlit run portfolio.py --server.headless=true
