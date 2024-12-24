@@ -3,6 +3,7 @@ import streamlit as st
 from src.controllers.projects_controller import ProjectController
 from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
+from src.controllers.skill_controller import SkillController
 
 def load_css(file_name):
     with open(file_name, "r") as f:
@@ -41,8 +42,14 @@ elif page == "Experience":
 
 # Skills Section
 elif page == "Skills":
-    from src.skills import display_skills
-    display_skills()
+   # Initialize the SkillController
+    skill_controller = SkillController()
+
+    # Load skills from JSON file
+    skill_controller.load_skills_from_file("data/skills.json")
+
+    # Display skills
+    skill_controller.display_skills()
 # Projects Section
 elif page == "Projects":
     projects_controller = ProjectController()
