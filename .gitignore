@@ -18,7 +18,7 @@ Thumbs.db
 *.swp
 
 # Exclude Streamlit cache directory (if applicable)
-.streamlit/
+#.streamlit/
 
 # Exclude VSCode settings (if using VSCode)
 .vscode/
