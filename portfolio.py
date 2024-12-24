@@ -37,7 +37,7 @@ load_css("style.css")
 
 with st.sidebar:
     # Load the image URL from environment variables
-    image_url = os.getenv("PROFILE_IMAGE_URL")  # Add this to your environment variables (e.g., .env file, GitHub secrets)
+  # Add this to your environment variables (e.g., .env file, GitHub secrets)
 
     if image_url:
         # Fetch the image from Google Drive using the URL
