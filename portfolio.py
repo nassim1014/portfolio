@@ -35,13 +35,15 @@ st.set_page_config(
 load_css("style.css")
 # Sidebar
 
-with st.sidebar:
-    # Load the image URL from environment variables
-  # Add this to your environment variables (e.g., .env file, GitHub secrets)
+# filepath: /C:/Users/heeln/OneDrive/Documents/portfolio/portfolio.py
+def get_direct_download_link(google_drive_link):
+    file_id = google_drive_link.split('/')[-2]
+    return f"https://drive.google.com/uc?export=download&id={file_id}"
 
+with st.sidebar:
     if image_url:
-        # Fetch the image from Google Drive using the URL
-        response = requests.get(image_url)
+        direct_link = get_direct_download_link(image_url)
+        response = requests.get(direct_link)
         if response.status_code == 200:
             image = Image.open(BytesIO(response.content))
             st.image(image, caption="Nassim ZAARI")
@@ -49,7 +51,6 @@ with st.sidebar:
             st.warning("Unable to load image from the provided URL.")
     else:
         st.warning("Image URL not found in environment variables.")
-
     st.title("Navigation")
     # Sidebar navigation
     page = st.sidebar.selectbox("Navigation", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
