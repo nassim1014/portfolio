@@ -7,8 +7,10 @@ class SkillView:
         cols = st.columns(4)
         for col, skill in zip(cols, skills_list):
             with col:
-                st.markdown(f"<div class='skill-box'>{skill}</div>", unsafe_allow_html=True)
-
+                st.markdown(
+                    f"<div class='skill-box' style='color: white;'>{skill}</div>",
+                    unsafe_allow_html=True
+                )
     @staticmethod
     def display_skills(technologies):
         st.title("🛠️ Technical Skills")
