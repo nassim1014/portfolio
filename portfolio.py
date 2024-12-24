@@ -11,6 +11,7 @@ import os
 import requests
 from PIL import Image
 from io import BytesIO
+from utils import get_direct_download_link
 
 load_dotenv()  # This loads the .env file
 
@@ -36,9 +37,6 @@ load_css("style.css")
 # Sidebar
 
 # filepath: /C:/Users/heeln/OneDrive/Documents/portfolio/portfolio.py
-def get_direct_download_link(google_drive_link):
-    file_id = google_drive_link.split('/')[-2]
-    return f"https://drive.google.com/uc?export=download&id={file_id}"
 
 with st.sidebar:
     if image_url:

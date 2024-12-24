@@ -4,6 +4,9 @@ from streamlit_pdf_viewer import pdf_viewer
 import requests
 import json
 
+def get_direct_download_link(google_drive_link):
+        file_id = google_drive_link.split('/')[-2]
+        return f"https://drive.google.com/uc?export=download&id={file_id}"
 # Function to load JSON data from a Google Drive link
 def load_json_from_drive(file_url):
     # Convert Google Drive sharing URL to direct download URL

@@ -1,17 +1,26 @@
 # controllers/experience_controller.py
 import json
+import requests
 from src.models.certificate import CertificateFactory
 from src.views.certificate_view import CertificateView
+from utils import get_direct_download_link
 
 class CertificateController:
     def __init__(self):
         self.certificates = []
         self.view = CertificateView()
 
-    def load_certificates_from_file(self, file_path):
-        with open(file_path, "r", encoding="utf-8") as file:
-            data = json.load(file)
+
+    def load_certificates_from_file(self, google_drive_link):
+        direct_link = get_direct_download_link(google_drive_link)
+        response = requests.get(direct_link)
+        
+        if response.status_code == 200:
+            data = response.json()
             self.load_certificates(data)
+        else:
+            raise Exception(f"Failed to download file from Google Drive. Status code: {response.status_code}")
+
 
     def load_certificates(self, data):
             for item in data:

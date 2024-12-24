@@ -33,7 +33,7 @@ jobs:
           echo "CERTIFICATES_URL=${{ secrets.CERTIFICATES_URL }}" >> $GITHUB_ENV
           echo "IMAGE_URL=${{ secrets.IMAGE_URL }}" >> $GITHUB_ENV
 
-      - name: Run Streamlit app (Debug)
+      - name: Run Streamlit app 
         run: |
           source .venv/bin/activate
           streamlit run portfolio.py --server.headless=true
