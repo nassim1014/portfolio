@@ -11,6 +11,9 @@ class CertificateController:
     def load_certificates_from_file(self, file_path):
         with open(file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
+            self.load_certificates(data)
+
+    def load_certificates(self, data):
             for item in data:
                 certificate = CertificateFactory.create_certificate(
                     title=item["title"],
@@ -20,7 +23,6 @@ class CertificateController:
                     logos=item["logos"]
                 )
                 self.certificates.append(certificate)
-
     def display_certificates(self):
         certificate_details = [cert.get_certificate_details() for cert in self.certificates]
         self.view.display_all_certificates(certificate_details)

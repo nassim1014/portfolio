@@ -8,9 +8,7 @@ class ExperienceController:
         self.experiences = []
         self.view = ExperienceView()
 
-    def load_experiences_from_file(self, file_path):
-        with open(file_path, "r") as file:
-            data = json.load(file)
+    def load_experiences(self, data):
             for item in data:
                 experience = ExperienceFactory.create_experience(
                     experience_type=item["experience_type"],
@@ -21,7 +19,11 @@ class ExperienceController:
                     details=item["details"]
                 )
                 self.experiences.append(experience)
-
+    def load_experiences_from_file(self, file_path):
+        with open(file_path, "r") as file:
+            data = json.load(file)
+            self.load_experiences(data)
+            
     def display_experiences(self):
         experience_details = [exp.get_experience_details() for exp in self.experiences]
         self.view.display_all_experiences(experience_details)

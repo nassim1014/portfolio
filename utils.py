@@ -1,7 +1,18 @@
 import base64
-
 import streamlit as st
 from streamlit_pdf_viewer import pdf_viewer
+import requests
+import json
+
+# Function to load JSON data from a Google Drive link
+def load_json_from_drive(file_url):
+    # Convert Google Drive sharing URL to direct download URL
+    direct_url = file_url.replace("https://drive.google.com/file/d/", "https://drive.google.com/uc?id=").split("/view")[0]
+    response = requests.get(direct_url)
+    if response.status_code == 200:
+        return json.loads(response.content)
+    else:
+        raise Exception(f"Failed to fetch data from {file_url}: {response.status_code}")
 
 
 def get_image_base64(image_path):

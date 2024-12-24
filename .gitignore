@@ -22,3 +22,5 @@ Thumbs.db
 
 # Exclude VSCode settings (if using VSCode)
 .vscode/
+
+.env

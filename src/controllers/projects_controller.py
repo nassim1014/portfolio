@@ -29,6 +29,8 @@ class ProjectController:
     def load_projects_from_file(self, file_path):
         with open(file_path, "r") as file:
             data = json.load(file)
+            self.load_projects(data)
+    def load_projects(self, data):
             # Load old projects
             for item in data.get("old_projects", []):
                 project = ProjectController.get_project_item(item , type = "old")
