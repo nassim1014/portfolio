@@ -13,8 +13,8 @@ from PIL import Image
 from io import BytesIO
 from PIL import Image, ImageOps, ImageDraw
 
-def create_circular_image(image_path, size):
-    img = Image.open(image_path)
+def create_circular_image(img, size):
+#    img = Image.open(image_path)
     mask = Image.new('L', (size, size), 0)
     draw = ImageDraw.Draw(mask)
     draw.ellipse((0, 0, size, size), fill=255)
@@ -55,10 +55,10 @@ with st.sidebar:
         response = requests.get(direct_link)
         if response.status_code == 200:
             image = Image.open(BytesIO(response.content))
-            #st.image(image, caption="Nassim ZAARI")
-            image = "images/utc_grad.jpg"
-            circular_image = create_circular_image(image, 300)
-            st.image(circular_image)
+            st.image(image, caption="Nassim ZAARI")
+            #image = "images/utc_grad.jpg"
+            #circular_image = create_circular_image(image, 300)
+            #st.image(circular_image , caption="Nassim ZAARI")
         else:
             st.warning("Unable to load image from the provided URL.")
     else:
