@@ -69,7 +69,7 @@ with st.sidebar:
     #page = st.sidebar.radio("Navigation", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
     page = option_menu(
         menu_title="Navigation",
-        options=["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"],
+        options=["About Me", "Experience", "Skills", "Projects", "Certificates"],
         icons=["person", "briefcase", "tools", "clipboard", "award", "envelope"],
         menu_icon="cast",
         default_index=0
@@ -122,9 +122,9 @@ elif page == "Certificates":
 
     
 # Contact Section
-elif page == "Contact":
-    from src.contact import display_contact
-    display_contact()
+#elif page == "Contact":
+#    from src.contact import display_contact
+#    display_contact()
 
 # Footer
 st.markdown("---")

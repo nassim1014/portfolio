@@ -1,35 +1,46 @@
 import streamlit as st
+
+from src.contact import display_contact
 def display_about_me():
-    st.title("👋 Hello, I'm Nassim ZAARI")
-    st.header("Software Engineer | Data Scientist")
+        st.title("👋 Hello, I'm Nassim ")
+        st.markdown("""
+        Young graduate with solid training in Data Science and Software Development. 
+        Passionate about creating innovative solutions and leveraging data for business impact.
         
-    col1, col2 = st.columns(2)
-    with col1:
-            st.markdown("""
-            ### Professional Summary
-            Young graduate with solid training in Data Science and Software Development. 
-            Passionate about creating innovative solutions and leveraging data for business impact.
-            
-            ### Education
-            - **Master's Degree** in Machine Learning and Complex Systems Optimization
-            * University of Technology of Compiègne (GPA: 4.77/5)
-            * 2022 - 2024
-            
-            - **Engineering Degree** in Computer Science
-            * Mohammadia School of Engineers
-            * 2020 - 2023
-            """)
+        - Exploratory Data Analysis and Predictive Model Development | **AI - Python - Pytorch - Tensorflow**.     
+        - Front-end and Back-end Development  | **React - Java - Python - SQL**.     
+                """)
+        #st.header("Software Engineer | Data Scientist")
+        #st.markdown("""
+        #        ### Professional Summary
+        #        Young graduate with solid training in Data Science and Software Development. 
+        #        Passionate about creating innovative solutions and leveraging data for business impact.
+        #        """)
+        st.markdown("---")
+        col1, col2 = st.columns(2)
+        with col1:
+                st.subheader("Master's Degree @ **University of Technology of Compiègne**")
+                #st.write("**University of Technology of Compiègne**")
+                st.write("Machine Learning and Complex Systems Optimization")
+                st.write("2022 - 2024 | Compiègne, France")
+
+                st.subheader("Engineering Degree @ **Mohammadia School of Engineers**")
+                #st.write("**Mohammadia School of Engineers**")
+                st.write("Computer Science")
+                st.write("2020 - 2023 | Rabat, Morocco")
         
-    with col2:
+        with col2:
             st.markdown("""
             ### Languages
             - French (Bilingual)
             - English (Bilingual)
-            - Arabic (Native)
-            
+            - Arabic (Native) """)
+            st.markdown("""
             ### Professional Values
             - Team Collaboration
             - Adaptability
             - Autonomy
             - Rigor
             """)
+        st.markdown("---")
+        display_contact()

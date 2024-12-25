@@ -21,12 +21,12 @@ def display_contact():
         """)
     
     # Contact Form
-    st.header("Send me a message")
-    with st.form("contact_form"):
-        name = st.text_input("Name")
-        email = st.text_input("Email")
-        message = st.text_area("Message")
-        submit = st.form_submit_button("Send Message")
+    #st.header("Send me a message")
+    #with st.form("contact_form"):
+    #    name = st.text_input("Name")
+    #    email = st.text_input("Email")
+    #    message = st.text_area("Message")
+    #    submit = st.form_submit_button("Send Message")
         
-        if submit:
-            st.success("Thank you for your message! I'll get back to you soon.")
+    #    if submit:
+    #        st.success("Thank you for your message! I'll get back to you soon.")
