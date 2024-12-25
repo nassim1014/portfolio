@@ -10,7 +10,6 @@ class PrjoectView:
         st.subheader(f"{project['title']}")
 
         with st.container():
-            st.markdown(f"""### {project['title']}""")
             col1, col2 = st.columns([2,1])
             with col1:
                 st.markdown(project['description'])
