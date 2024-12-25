@@ -1,0 +1,35 @@
+name: Deploy Streamlit App
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on pushes to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install python-dotenv  # Install dotenv to load environment variables
+
+      - name: Set environment variables
+        run: |
+          echo "EXPERIENCES_URL=${{ secrets.EXPERIENCES_URL }}" >> $GITHUB_ENV
+          echo "SKILLS_URL=${{ secrets.SKILLS_URL }}" >> $GITHUB_ENV
+          echo "PROJECTS_URL=${{ secrets.PROJECTS_URL }}" >> $GITHUB_ENV
+          echo "CERTIFICATES_URL=${{ secrets.CERTIFICATES_URL }}" >> $GITHUB_ENV
+
+      - name: Run Streamlit app
+        run: |
+          streamlit run portfolio.py

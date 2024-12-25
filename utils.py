@@ -3,6 +3,15 @@ import streamlit as st
 from streamlit_pdf_viewer import pdf_viewer
 import requests
 import json
+from streamlit.components.v1 import html
+
+def open_pdf(url):
+    open_script = f"""
+        <script type="text/javascript">
+            window.open('{url}', '_blank').focus();
+        </script>
+    """
+    html(open_script)
 
 def get_direct_download_link(google_drive_link):
         file_id = google_drive_link.split('/')[-2]
