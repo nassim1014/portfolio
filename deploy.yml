@@ -30,6 +30,6 @@ jobs:
           echo "PROJECTS_URL=${{ secrets.PROJECTS_URL }}" >> $GITHUB_ENV
           echo "CERTIFICATES_URL=${{ secrets.CERTIFICATES_URL }}" >> $GITHUB_ENV
 
-      - name: Run Streamlit app
-        run: |
-          streamlit run portfolio.py
+  #    - name: Run Streamlit app
+  #      run: |
+  #        streamlit run portfolio.py
