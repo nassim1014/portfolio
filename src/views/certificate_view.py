@@ -1,10 +1,7 @@
-import base64
 from io import BytesIO
 import requests
 import streamlit as st
-from streamlit.components.v1 import html
-from utils import get_direct_download_link, open_pdf
-from streamlit_image_zoom import image_zoom
+from utils import get_direct_download_link
 from PIL import Image
 class CertificateView:
     @staticmethod
