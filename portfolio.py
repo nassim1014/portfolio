@@ -5,7 +5,6 @@ from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
 from src.controllers.skill_controller import SkillController
 from utils import load_json_from_drive , get_direct_download_link
-from streamlit_navigation_bar import st_navbar
 from dotenv import load_dotenv
 import os
 import requests
@@ -69,8 +68,10 @@ with st.sidebar:
     #page = st.sidebar.radio("Navigation", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
     page = option_menu(
         menu_title="Navigation",
-        options=["About Me", "Experience", "Skills", "Projects", "Certificates"],
-        icons=["person", "briefcase", "tools", "clipboard", "award", "envelope"],
+    #    options=["About Me", "Experience", "Skills", "Projects", "Certificates"],
+    #    icons=["person", "briefcase", "tools", "clipboard", "award", "envelope"],
+        options=["About Me", "Experience", "Projects", "Certificates"],
+        icons=["person", "briefcase", "clipboard", "award", "envelope"],
         menu_icon="cast",
         default_index=0
     )

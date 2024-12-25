@@ -30,6 +30,7 @@ class PrjoectView:
         st.title("🚀 Projects")
         for project in old_projects:
             PrjoectView.display_old_project(project)
+            st.markdown("---")
 
         st.header("🔨 Current Projects")
         for project in current_projects:
