@@ -4,22 +4,13 @@ from src.controllers.projects_controller import ProjectController
 from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
 from src.controllers.skill_controller import SkillController
-from utils import load_json_from_drive , get_direct_download_link
+from utils import load_json_from_drive , get_direct_download_link , load_css
 from dotenv import load_dotenv
 import os
 import requests
 from PIL import Image
 from io import BytesIO
-from PIL import Image, ImageOps, ImageDraw
-
-def create_circular_image(img, size):
-#    img = Image.open(image_path)
-    mask = Image.new('L', (size, size), 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, size, size), fill=255)
-    output = ImageOps.fit(img, (size, size), centering=(0.5, 0.5))
-    output.putalpha(mask)
-    return output
+from streamlit_navigation_bar import st_navbar
 
 load_dotenv()  # This loads the .env file
 
@@ -30,10 +21,6 @@ skills_file_url = os.getenv("SKILLS_URL")
 projects_file_url = os.getenv("PROJECTS_URL")
 image_url = os.getenv("IMAGE_URL")
 
-def load_css(file_name):
-    with open(file_name, "r") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
 # Page Configuration
 st.set_page_config(
     page_title="Nassim ZAARI - Portfolio",
@@ -43,10 +30,6 @@ st.set_page_config(
 
 load_css("style.css")
 # Sidebar
-
-# filepath: /C:/Users/heeln/OneDrive/Documents/portfolio/portfolio.py
-
-
 
 with st.sidebar:
     if image_url:
@@ -129,4 +112,4 @@ elif page == "Certificates":
 
 # Footer
 st.markdown("---")
-st.markdown("© 2024 Nassim ZAARI. All rights reserved.")
+st.markdown("2024 | Nassim ZAARI | zaari.nassim@gmail.com | +33 6 99 38 30 36")
