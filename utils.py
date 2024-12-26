@@ -5,17 +5,18 @@ import requests
 import json
 from streamlit.components.v1 import html
 from PIL import Image, ImageOps, ImageDraw
-
-
+from io import BytesIO
+import requests
+@st.cache_data
+def load_image(direct_link):
+    response = requests.get(direct_link)
+    if response.status_code == 200:
+        return Image.open(BytesIO(response.content))
+    else:
+        st.warning("Unable to load image from the provided URL.")
 def load_css(file_name):
     with open(file_name, "r") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-
-def load_css(file_name):
-    with open(file_name, "r") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
 def create_circular_image(img, size):
 #    img = Image.open(image_path)
     mask = Image.new('L', (size, size), 0)
@@ -24,7 +25,6 @@ def create_circular_image(img, size):
     output = ImageOps.fit(img, (size, size), centering=(0.5, 0.5))
     output.putalpha(mask)
     return output
-
 
 def open_pdf(url):
     open_script = f"""

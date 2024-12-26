@@ -1,8 +1,7 @@
-from io import BytesIO
-import requests
+
 import streamlit as st
-from utils import get_direct_download_link
-from PIL import Image
+from utils import get_direct_download_link, load_image
+from PIL import Image 
 class CertificateView:
     @staticmethod
     def display_simple_certificate(certificate): 
@@ -15,19 +14,10 @@ class CertificateView:
             with col2:
                 st.markdown(f"**Date:** {certificate['date']}")
         # Load and display the certificate image
-        # image = Image.open(r"images\OC\4815824035-1.png")
         direct_link = get_direct_download_link(certificate['pdf_path'])
-        response = requests.get(direct_link)
-        image = Image.open(BytesIO(response.content))
-        
-            #with col1:
-            #    st.image(image, caption="Click to zoom", use_column_width=True)
+        image = load_image(direct_link)
         st.image(image, use_container_width =True)
-        #st.markdown("----")
-            #with col2:
-            #    image_zoom(image, size=400, zoom_factor=2.5)
-       # if st.button('📄 View Certificate' , key=f"{certificate['title']} + {certificate['issued_by']} + {certificate['date']}"):
-       #     open_pdf(certificate['pdf_path'])
+
         
     @staticmethod
     def display_all_certificates(certificates):

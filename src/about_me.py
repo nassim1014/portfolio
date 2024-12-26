@@ -1,5 +1,4 @@
 import streamlit as st
-
 from src.contact import display_contact
 def display_about_me():
         st.title("👋 Hello, I'm Nassim ")
@@ -10,12 +9,7 @@ def display_about_me():
         - Exploratory Data Analysis and Predictive Model Development | **AI - Python - Pytorch - Tensorflow**.     
         - Front-end and Back-end Development  | **React - Java - Python - SQL**.     
                 """)
-        #st.header("Software Engineer | Data Scientist")
-        #st.markdown("""
-        #        ### Professional Summary
-        #        Young graduate with solid training in Data Science and Software Development. 
-        #        Passionate about creating innovative solutions and leveraging data for business impact.
-        #        """)
+
         st.markdown("---")
         col1, col2 = st.columns(2)
         with col1:

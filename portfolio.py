@@ -3,14 +3,14 @@ from streamlit_option_menu import option_menu
 from src.controllers.projects_controller import ProjectController
 from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
-from src.controllers.skill_controller import SkillController
-from utils import load_json_from_drive , get_direct_download_link , load_css
+from utils import load_image, load_json_from_drive , get_direct_download_link , load_css
 from dotenv import load_dotenv
 import os
 import requests
 from PIL import Image
 from io import BytesIO
 from streamlit_navigation_bar import st_navbar
+from src.about_me import display_about_me
 
 load_dotenv()  # This loads the .env file
 
@@ -34,15 +34,8 @@ load_css("style.css")
 with st.sidebar:
     if image_url:
         direct_link = get_direct_download_link(image_url)
-        response = requests.get(direct_link)
-        if response.status_code == 200:
-            image = Image.open(BytesIO(response.content))
-            st.image(image, caption="Nassim ZAARI")
-            #image = "images/utc_grad.jpg"
-            #circular_image = create_circular_image(image, 300)
-            #st.image(circular_image , caption="Nassim ZAARI")
-        else:
-            st.warning("Unable to load image from the provided URL.")
+        image = load_image(direct_link)
+        st.image(image, caption="Nassim ZAARI")
     else:
         st.warning("Image URL not found in environment variables.")
         st.title("Navigation")
@@ -61,7 +54,6 @@ with st.sidebar:
 
 # About Me Section
 if page == "About Me":
-    from src.about_me import display_about_me
     display_about_me()
 
 # Experience Section
@@ -70,28 +62,27 @@ elif page == "Experience":
     experiences_data = load_json_from_drive(experiences_file_url)
     experience_controller = ExperienceController()
     # Load experiences from JSON
- #   experience_controller.load_experiences_from_file("data/experiences.json")
-    experience_controller.load_experiences(experiences_data)
+    experience_controller.process_experiences(experiences_data)
     # Display experiences
     experience_controller.display_experiences()
 
 # Skills Section
-elif page == "Skills":
-    skills_data = load_json_from_drive(skills_file_url)
+#elif page == "Skills":
+#    skills_data = load_json_from_drive(skills_file_url)
    # Initialize the SkillController
-    skill_controller = SkillController()
+#    skill_controller = SkillController()
     
     # Load skills from JSON file
-    skill_controller.load_skills(skills_data)
+#    skill_controller.process_skills(skills_data)
 
     # Display skills
-    skill_controller.display_skills()
+#    skill_controller.display_skills()
 # Projects Section
 elif page == "Projects":
     projects_data = load_json_from_drive(projects_file_url)
     projects_controller = ProjectController()
     # Load projectss from JSON
-    projects_controller.load_projects(projects_data)
+    projects_controller.process_projects(projects_data)
     # Display projects
     projects_controller.display_projects()
 
