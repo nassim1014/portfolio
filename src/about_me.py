@@ -25,29 +25,36 @@ def display_about_me(image_url):
                                 st.warning("Image URL not found in environment variables.")
 
         st.markdown("---")
-        col1, col2 = st.columns(2)
-        with col1:
-                st.subheader("Master's Degree @ **University of Technology of Compiègne**")
-                #st.write("**University of Technology of Compiègne**")
-                st.write("Machine Learning and Complex Systems Optimization")
-                st.write("2022 - 2024 | Compiègne, France")
+        with st.container():
+                left_column, right_column = st.columns([2, 1])
+                with left_column:
+                        st.title("🎓 Education")
+                        st.subheader("Master's Degree @ **University of Technology of Compiègne**")
+                        #st.write("**University of Technology of Compiègne**")
+                        st.write("Machine Learning and Complex Systems Optimization")
+                        st.write("2023 - 2024 | Compiègne, France")
 
-                st.subheader("Engineering Degree @ **Mohammadia School of Engineers**")
-                #st.write("**Mohammadia School of Engineers**")
-                st.write("Computer Science")
-                st.write("2020 - 2023 | Rabat, Morocco")
-        
-        with col2:
-            st.markdown("""
-            ### Languages
-            - French (Bilingual)
-            - English (Bilingual)
-            - Arabic (Native) """)
-            st.markdown("""
-            ### Professional Values
-            - Team Collaboration
-            - Adaptability
-            - Autonomy
-            - Rigor
-            """)
+                        st.subheader("Academic Exchange Program @ **University of Technology of Compiègne**")
+                        #st.write("**University of Technology of Compiègne**")
+                        st.write("Artificial Intelligence and Data Science")
+                        st.write("2022 - 2023 | Compiègne, France")
+
+                        st.subheader("Engineering Degree @ **Mohammadia School of Engineers**")
+                        #st.write("**Mohammadia School of Engineers**")
+                        st.write("Computer Science")
+                        st.write("2020 - 2023 | Rabat, Morocco")
+                
+                with right_column:
+                        st.markdown("""
+                        ### Languages
+                        - French (Bilingual)
+                        - English (Bilingual)
+                        - Arabic (Native) """)
+                        st.markdown("""
+                        ### Professional Values
+                        - Team Collaboration
+                        - Adaptability
+                        - Autonomy
+                        - Problem-Solving
+                        """)
         st.markdown("---")
