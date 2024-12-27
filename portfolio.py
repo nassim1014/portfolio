@@ -5,7 +5,7 @@ from src.contact import display_contact
 from src.controllers.projects_controller import ProjectController
 from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
-from utils import load_image, load_json_from_drive , get_direct_download_link , load_css , create_circular_image
+from utils import load_image, load_json_from_drive  , load_css 
 from dotenv import load_dotenv
 import os
 from src.about_me import display_about_me
@@ -15,7 +15,7 @@ load_dotenv()  # This loads the .env file
 # Get the URLs from environment variables
 experiences_file_url = os.getenv("EXPERIENCES_URL")
 certificates_file_url = os.getenv("CERTIFICATES_URL")
-skills_file_url = os.getenv("SKILLS_URL")
+#skills_file_url = os.getenv("SKILLS_URL")
 projects_file_url = os.getenv("PROJECTS_URL")
 image_url = os.getenv("IMAGE_URL")
 
