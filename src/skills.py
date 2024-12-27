@@ -24,5 +24,5 @@ def display_skills():
         txt3('Databases', '`MySQL`, `PostgreSQL`, `MongoDB`, `SQLite`')
         txt3('MLOps', '`Git`, `Docker`, `Mlflow`, `Linux`, `ZenML`')
         txt3('Data Visualization', '`Power BI`,`Matplotlib`, `Seaborn`, `Plotly`')
-        txt3('Big Data', '`Apache Spark`, `Hadoop`, `Hive`')
+        txt3('Big Data', '`Apache Spark`, `Hadoop`, `Kafka`')
         txt3('Project Management', '`Agile`, `Scrum`, `Jira`, `ClickUp`')
