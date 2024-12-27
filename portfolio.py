@@ -1,17 +1,15 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+from src.skills import display_skills
+from src.contact import display_contact
 from src.controllers.projects_controller import ProjectController
 from src.controllers.experience_controller import ExperienceController
 from src.controllers.certificate_controller import CertificateController
-from utils import load_image, load_json_from_drive , get_direct_download_link , load_css
+from utils import load_image, load_json_from_drive , get_direct_download_link , load_css , create_circular_image
 from dotenv import load_dotenv
 import os
-import requests
-from PIL import Image
-from io import BytesIO
-from streamlit_navigation_bar import st_navbar
 from src.about_me import display_about_me
-
+from streamlit_option_menu import option_menu
 load_dotenv()  # This loads the .env file
 
 # Get the URLs from environment variables
@@ -25,25 +23,28 @@ image_url = os.getenv("IMAGE_URL")
 st.set_page_config(
     page_title="Nassim ZAARI - Portfolio",
     page_icon="👨‍💻",
-    layout="wide"
+    layout="wide",
 )
 
 load_css("style.css")
 # Sidebar
 
+page = option_menu(
+        menu_title=None,
+        options=["About Me", "Experience", "Projects", "Certificates"],
+        icons=["person", "briefcase", "clipboard", "award", "envelope"],
+        menu_icon="cast",
+        default_index=0,
+        orientation="horizontal"
+    )
+_="""
+
 with st.sidebar:
-    if image_url:
-        direct_link = get_direct_download_link(image_url)
-        image = load_image(direct_link)
-        st.image(image, caption="Nassim ZAARI")
-    else:
-        st.warning("Image URL not found in environment variables.")
-        st.title("Navigation")
         # Sidebar navigation
 
     #page = st.sidebar.radio("Navigation", ["About Me", "Experience", "Skills", "Projects", "Certificates", "Contact"])
     page = option_menu(
-        menu_title="Navigation",
+        menu_title=None,
     #    options=["About Me", "Experience", "Skills", "Projects", "Certificates"],
     #    icons=["person", "briefcase", "tools", "clipboard", "award", "envelope"],
         options=["About Me", "Experience", "Projects", "Certificates"],
@@ -51,11 +52,17 @@ with st.sidebar:
         menu_icon="cast",
         default_index=0
     )
-
+#
+"""
 # About Me Section
 if page == "About Me":
-    display_about_me()
 
+    display_about_me(image_url)
+
+    display_skills()
+
+    st.markdown("---")
+    display_contact()
 # Experience Section
 elif page == "Experience":
 

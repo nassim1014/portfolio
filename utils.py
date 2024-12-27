@@ -7,6 +7,19 @@ from streamlit.components.v1 import html
 from PIL import Image, ImageOps, ImageDraw
 from io import BytesIO
 import requests
+
+def txt3(a, b):
+    """
+    Create a two-column text layout for skills display
+    Args:
+        a (str): Category name
+        b (str): Skills in that category
+    """
+    col1, col2 = st.columns([2, 4])
+    with col1:
+        st.markdown(f"**{a}**")
+    with col2:
+        st.markdown(b)
 @st.cache_data
 def load_image(direct_link):
     response = requests.get(direct_link)
