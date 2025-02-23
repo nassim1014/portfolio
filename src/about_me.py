@@ -9,7 +9,7 @@ def display_about_me(image_url):
                 with right_column:
                         st.title("👋 Hello, I'm Nassim ")
                         st.markdown("""
-                        Young graduate with solid training in Data Science and Software Development. 
+                        Young graduate with solid training in Data Science, AI and Software Development. 
                         Passionate about creating innovative solutions and leveraging data for business impact.
                         
                         - Exploratory Data Analysis and Predictive Model Development | **AI - Python - Pytorch - Tensorflow**.     
